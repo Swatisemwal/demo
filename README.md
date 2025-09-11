@@ -228,3 +228,6 @@ export default function SkinInsightQuiz() {
     </div>
   );
 }
+-----------------------------------------------------------
+https://buildabear.com.au/
+https://in.pinterest.com/pin/3588874695957911/

@@ -316,3 +316,15 @@ export default function EducationalPrograms() {
   );
 }
 
+----------------------------------------------------------------
+smart ingridients ,what makes us differennt form others
+https://webflow.com/templates/html/gummie-website-template
+----------------
+https://in.pinterest.com/pin/4081455907100135/
+https://in.pinterest.com/pin/4433299629914231/ home page
+https://in.pinterest.com/pin/11047961581415686/
+https://in.pinterest.com/pin/3729612268863251/ single page
+https://in.pinterest.com/pin/914862421035307/ for about us page
+https://in.pinterest.com/pin/59743132553776153/
+https://in.pinterest.com/pin/1618549864251561/
+https://in.pinterest.com/pin/2744449769305768/ cards

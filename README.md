@@ -231,3 +231,88 @@ export default function SkinInsightQuiz() {
 -----------------------------------------------------------
 https://buildabear.com.au/
 https://in.pinterest.com/pin/3588874695957911/
+=========================================
+https://modkids.casethemes.net/home-02/
+https://modkids.casethemes.net/
+-------------------code for rope and cards need to modify--
+
+import React from "react";
+
+const programs = [
+  {
+    category: "Sport Program",
+    title: "Grow your own wings",
+    image: "https://i.ibb.co/vjtcP4n/kids1.jpg",
+    bg: "bg-blue-200",
+  },
+  {
+    category: "Kids Play",
+    title: "Education Program",
+    image: "https://i.ibb.co/jr3XTr6/kids2.jpg",
+    bg: "bg-yellow-200",
+  },
+  {
+    category: "Baby Essentials",
+    title: "Life Skills for kids",
+    image: "https://i.ibb.co/6Hj4vQ6/kids3.jpg",
+    bg: "bg-orange-200",
+  },
+  {
+    category: "Kids Skill",
+    title: "Nurturing Caregiving",
+    image: "https://i.ibb.co/6rZn8dM/kids4.jpg",
+    bg: "bg-green-200",
+  },
+  {
+    category: "Kids Playing",
+    title: "Enriching Learning",
+    image: "https://i.ibb.co/0GnydLJ/kids5.jpg",
+    bg: "bg-pink-200",
+  },
+];
+
+export default function EducationalPrograms() {
+  return (
+    <div className="relative w-full py-12 bg-gray-50">
+      {/* Rope (SVG curve) */}
+      <svg
+        className="absolute top-0 left-0 w-full h-40"
+        viewBox="0 0 1000 200"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,100 C250,200 750,0 1000,100"
+          stroke="#6b7280"
+          strokeWidth="3"
+          fill="transparent"
+        />
+      </svg>
+
+      <div className="relative flex justify-center gap-6 mt-10 flex-wrap">
+        {programs.map((program, idx) => (
+          <div
+            key={idx}
+            className={`${program.bg} w-56 rounded-2xl shadow-lg transform rotate-${idx % 2 === 0 ? "2" : "-2"} relative`}
+          >
+            {/* Clip */}
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-6 h-6 bg-purple-700 rounded-t-md" />
+
+            {/* Content */}
+            <img
+              src={program.image}
+              alt={program.title}
+              className="w-full h-36 object-cover rounded-t-2xl"
+            />
+            <div className="p-3">
+              <p className="text-sm text-red-500 font-medium">{program.category}</p>
+              <h3 className="text-lg font-bold text-gray-800">
+                {program.title}
+              </h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+

@@ -328,3 +328,365 @@ https://in.pinterest.com/pin/914862421035307/ for about us page
 https://in.pinterest.com/pin/59743132553776153/
 https://in.pinterest.com/pin/1618549864251561/
 https://in.pinterest.com/pin/2744449769305768/ cards
+0-------------------------------------------------------
+product card---update newSubscriptioncar----
+------------------------
+
+import React, { useEffect, useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Thumbs } from "swiper/modules";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import img1 from "../../assets/imgs/bg1.webp";
+import img2 from "../../assets/imgs/bg2.webp";
+
+import "swiper/css";
+import "swiper/css/thumbs";
+
+const dummyImages = [
+  { url: img1, alt: "Product 1" },
+  { url: img1, alt: "Product 2" },
+  { url: img2, alt: "Product 3" },
+  { url: img2, alt: "Product 4" },
+];
+
+export default function ProductCard() {
+  const [thumbsV, setThumbsV] = useState(null); // vertical thumbs (desktop)
+  const [thumbsH, setThumbsH] = useState(null); // horizontal thumbs (mobile)
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 768 : true
+  );
+
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+
+  const mainSwiperRef = useRef(null);
+
+  // media query to toggle desktop/mobile
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handler = (e) => setIsDesktop(e.matches);
+    handler(mq); // initialize
+    if (mq.addEventListener) {
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    } else {
+      mq.addListener(handler);
+      return () => mq.removeListener(handler);
+    }
+  }, []);
+
+  // pick the correct thumbs swiper instance for the main swiper
+  const currentThumbs = isDesktop ? thumbsV : thumbsH;
+
+  return (
+    <div className="flex flex-col md:flex-row gap-6 w-full p-6 md:p-12 bg-gray-50 rounded-xl">
+      {/* LEFT block: thumbs + main slider */}
+      <div className="w-full md:w-1/2 flex flex-col md:flex-row items-start gap-4 ">
+        {/* Vertical thumbs - only render on desktop */}
+        {isDesktop && (
+          <div className="hidden md:block w-20">
+            <Swiper
+              direction="vertical"
+              spaceBetween={10}
+              slidesPerView={4}
+              watchSlidesProgress={true}
+              modules={[Thumbs]}
+              onSwiper={(s) => setThumbsV(s)}
+              className="w-20 h-[50vh] md:h-[60vh]"
+            >
+              {dummyImages.map((img, idx) => (
+                <SwiperSlide key={idx}>
+                  <button
+                    type="button"
+                    onClick={() => mainSwiperRef.current?.slideTo(idx)}
+                    className="w-full h-20 p-1"
+                  >
+                    <img
+                      src={img.url}
+                      alt={`thumb-${idx}`}
+                      className=" w-full h-20  object-contain rounded-md border border-gray-200"
+                    />
+                  </button>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
+
+        {/* Main slider */}
+        <div className="relative  md:flex-1 md:min-w-0 w-full  ">
+          <Swiper
+            onSwiper={(s) => {
+              mainSwiperRef.current = s;
+              setIsBeginning(s.isBeginning);
+              setIsEnd(s.isEnd);
+            }}
+            onSlideChange={(s) => {
+              setIsBeginning(s.isBeginning);
+              setIsEnd(s.isEnd);
+            }}
+            spaceBetween={20}
+            slidesPerView={1}
+            thumbs={currentThumbs ? { swiper: currentThumbs } : undefined}
+            modules={[Thumbs]}
+            className="rounded-2xl"
+          >
+            {dummyImages.map((img, idx) => (
+              <SwiperSlide key={idx} className="">
+                <div className="w-full h-[50vh] md:h-[60vh] bg-gray-100 rounded-2xl flex items-center justify-center overflow-hidden">
+                  <img src={img.url} alt={img.alt} className="object-contain w-full h-full" />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+            {/* arrows - disabled visually & functionally at ends */}
+          <div className="absolute inset-y-0 left-0 right-0 z-10 flex justify-between items-center px-4 pointer-events-none">
+            <button
+              type="button"
+              onClick={() => !isBeginning && mainSwiperRef.current?.slidePrev()}
+              className={`pointer-events-auto bg-white/90 rounded-full p-1 shadow transition transform ${
+                isBeginning ? "opacity-40 cursor-not-allowed" : "hover:scale-110"
+              }`}
+              aria-disabled={isBeginning}
+            >
+              <ArrowLeft />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => !isEnd && mainSwiperRef.current?.slideNext()}
+              className={`pointer-events-auto bg-white/90 rounded-full p-1 shadow transition transform ${
+                isEnd ? "opacity-40 cursor-not-allowed" : "hover:scale-110"
+              }`}
+              aria-disabled={isEnd}
+            >
+              <ArrowRight />
+            </button>
+          </div>
+        </div>
+
+        {/* Horizontal thumbs - only render on mobile (below main) */}
+        {!isDesktop && (
+          <div className="w-full block md:hidden mt-4">
+            <Swiper
+              direction="horizontal"
+              spaceBetween={10}
+              slidesPerView={"auto"}
+              watchSlidesProgress={true}
+              modules={[Thumbs]}
+              onSwiper={(s) => setThumbsH(s)}
+              className="w-full"
+            >
+              {dummyImages.map((img, idx) => (
+                <SwiperSlide key={idx} style={{ width: 100 }}>
+                  <button
+                    type="button"
+                    onClick={() => mainSwiperRef.current?.slideTo(idx)}
+                    className="w-full h-24 p-1"
+                  >
+                    <img
+                      src={img.url}
+                      alt={`thumb-mobile-${idx}`}
+                      className="w-full h-full object-contain rounded-md border border-gray-200"
+                    />
+                  </button>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
+      </div>
+
+      {/* RIGHT: product details (keep yours here) */}
+      <div className="w-full md:w-1/2 flex flex-col gap-4">
+        <h2 className="text-2xl font-bold">One-time Purchase</h2>
+        <p className="text-gray-600">₹849.00 / per bottle</p>
+        <button className="bg-black text-white py-3 rounded-lg hover:scale-105 transition">Add To Cart</button>
+      </div>
+    </div>
+  );
+}
+----------------------------------------------------
+NewTestimonial ----------------
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "./testimonialSwiper.css";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion as m } from "framer-motion";
+import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa6";
+import { fadeInUp } from "../../components/common/animation";
+const testimonials = [
+  {
+    id: 1,
+    name: "Sophia R.",
+    description:
+      "My 8-year-old daughter has always struggled with her eyesight, but after using Eyebeam for just 90 days, I noticed a huge improvement! She doesn’t squint as much anymore, and her eye health has visibly improved. ",
+    image:
+      "https://img.freepik.com/premium-photo/portrait-happy-indian-asian-young-family-while-standing-against-wall-parents-with-two-daughters-looking-camera_466689-7316.jpg?w=740",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "James M.",
+    description:
+      "As a mom, I always worry about my child's eye health, especially with so much screen time. Eyebeam gummies have been a game changer! My son loves the cranberry flavor, and I can see his vision getting sharper every day. Highly recommend!",
+    image:
+      "https://img.freepik.com/premium-photo/man-with-his-arms-crossed-word-word-front_916191-428856.jpg?w=740",
+    rating: 4.5,
+  },
+  {
+    id: 3,
+    name: "Emily T.",
+    description:
+      "I’ve been looking for a product that supports my son's bone health and helps him grow stronger, and Bonevito is exactly what he needed. The gummies are fun, delicious, and packed with all the nutrients he needs. I’m so glad we found them",
+    image:
+      "https://img.freepik.com/premium-photo/family-three-smiling-mother-father-son_1029679-167596.jpg?w=740",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Michael B.",
+    description:
+      "My 6-year-old loves playing soccer, but I noticed her bones weren’t as strong as they should be. Since we started giving her Bonevito gummies, I’ve seen a huge improvement in her energy levels and strength. Plus, she loves the mango flavor!",
+    image:
+      "https://img.freepik.com/premium-photo/family-poses-photo-with-girl_911060-135370.jpg?w=740",
+    rating: 4.8,
+  },
+  {
+    id: 5,
+    name: "Olivia K.",
+    description:
+      "As a mom with a picky eater, I’m always looking for ways to ensure my child gets all the nutrients they need. Vitameez gummies have been perfect! They boost his immunity and promoted growth, all while tasting amazing. He asks for them every day!",
+    image:
+      "https://img.freepik.com/premium-photo/family-portrait-with-two-people-posing-photo_1290348-2157.jpg?w=740",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Sophia R.",
+    description:
+      "My son is always on the go, and I was worried he wasn’t getting enough nutrition. Vitameez has been an absolute helping hand. It’s packed with vitamins, and he loves the strawberry flavor. I’m confident he’s getting everything he needs.",
+    image:
+      "https://img.freepik.com/premium-photo/portrait-happy-indian-asian-young-family-while-standing-against-wall-parents-with-two-daughters-looking-camera_466689-7316.jpg?w=740",
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: "James M.",
+    description:
+      "I was looking for something natural to help my child fight with infections, and Imunoprash gummies fit the bill perfectly! They love the taste, and I’m confident their immune systems are getting stronger every day. I highly recommend these!",
+    image:
+      "https://img.freepik.com/premium-photo/happy-father-spends-time-with-children-christmas-vacation_105751-13821.jpg?w=360",
+    rating: 4.5,
+  },
+];
+const TestimonialSwiper = () => {
+  return (
+    <div>
+        <m.h2
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                className="text-3xl sm:text-4xl mb-10 md:text-5xl font-semibold text-woobyColor text-center pt-20 capitalize"
+              >
+                What Parents Say About Us?
+              </m.h2>
+    <div className="bg-[#f7f6f6c5] text-white py-10">
+      <div className="max-w-3xl mx-auto px-4 relative">
+        <Swiper
+      modules={[Navigation]}
+      loop={true}
+      centeredSlides={true}
+      slidesPerView={3}
+      spaceBetween={0}
+      navigation={{
+        nextEl: ".testimonial-next",
+        prevEl: ".testimonial-prev",
+      }}
+      className="outer-swiper"
+        >
+          {testimonials.map((item) => (
+            <SwiperSlide key={item.id} className="testimonial-slide">
+              <div className="bg-white text-black rounded-2xl shadow-lg overflow-hidden w-[300px]">
+                <div className="">
+                  <img
+                    src={item.image}
+                    alt={item.product}
+                    className="w-full h-52 object-cover object-top"
+                  />
+                </div>
+                {/* <div className="bg-gradient-to-r from-woobyOrange via-woobyOrangeLight to-woobyOrangeDark absolute backdrop:blur-2xl bottom-0 left-0 right-0  mx-2 mb-2 backdrop-blur-sm rounded-xl p-2 flex items-center gap-2 shadow-md"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.image || item.product}
+                    className="w-12 h-12 object-contain "
+                  />
+
+                  <div className="flex flex-col gap-2 w-full">
+                    <p className="text-xs font-semibold text-gray-800 mr-5">
+                     Gummy Bears
+                      (Strawberry)
+                    </p>
+
+                    <div className="flex items-center justify-between gap-4 rounded-lg ">
+                      <span className="text-green-600 font-bold text-lg ">
+                      ₹229
+                      </span>
+
+                      <button
+                        className="border-2 py-1 px-2 text-xs font-medium transition-colors rounded-lg cursor-pointer border-woobyColor text-woobyColor hover:bg-woobyColor hover:text-white"
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div> */}
+                <div className="p-4">
+                  <p className="font-semibold text-sm text-woobyColor">
+                    {item.name}
+                  </p>
+                  <p className="font-bold text-base">{item.product}</p>
+                  <p className="text-sm mt-2  text-gray-700">
+                    {" "}
+                    <FaQuoteLeft className="inline-block text-xl mr-2 text-woobyColor" />
+                    {item.description}
+                    <FaQuoteRight className="inline-block ml-2 text-woobyColor" />
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      {/* <span className="text-lg font-bold">{item.price}</span> */}
+                      <span className="text-sm text-gray-500 line-through ml-2">
+                        {/* {item.oldPrice} */}
+                      </span>
+                    </div>
+                    {/* <button className="bg-black text-white px-4 py-2 rounded-md text-sm">
+                      Add to Cart
+                    </button> */}
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <button className="testimonial-prev absolute -left-12 top-1/2 -translate-y-1/2 bg-white text-woobyColor shadow-lg rounded-full p-3 z-10">
+        <ArrowLeft />
+  </button>
+
+  <button className="testimonial-next absolute -right-12 top-1/2 -translate-y-1/2 bg-white text-woobyColor shadow-lg rounded-full p-3 z-10">
+  <ArrowRight />
+  </button>
+      </div>
+    </div>
+
+    </div>
+  );
+};
+
+export default TestimonialSwiper;
+

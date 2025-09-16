@@ -690,17 +690,483 @@ const TestimonialSwiper = () => {
 
 export default TestimonialSwiper;
 ---------------------------
-VITE_GOOGLE_CLIENT_ID=88140447712-lcvu2vdh9ea635scdc0bnao088db4qqs.apps.googleusercontent.com
-# VITE_API_URL=https://server-wooby.onrender.com/api
-VITE_API_URL=https://api.wooby.in/api
 
-VITE_FRONTEND_URL=https://wooby-frontend.vercel.app
+----------------------------------------------------
+product card ---------------------------
+//one with filling color-----------------
+// import React from "react";
+// import { motion } from "framer-motion";
+// import {
+//   fadeInUp,
+//   fadeInLeft,
+//   fadeInRight,
+//   scaleUp,
+//   inViewOptions,
+// } from "../../components/common/animation";
+// import { PiTrademark } from "react-icons/pi";
+// import { useEffect, useRef } from "react";
+// import { Check } from 'lucide-react';
 
 
-password test.wooby.in
 
-user-mhjpharma
+// const transition = {
+//   duration: 4,
+//   repeat: Infinity,
+//   repeatType: "reverse",
+//   ease: "easeInOut",
+// };
+// const ProductHighlight = ({ benefits }) => {
+//   console.log("benefits", benefits);
+//   const circleRef = useRef(null);
 
-pass-Mhj*pharma2204
+//   useEffect(() => {
+//     const circle = circleRef.current;
+//     if (circle) {
+//       circle.classList.add("animate-spin-slow");
+//     }
+//   }, []);
+//   const colorMap = {
+//     red: "bg-[#9f2923] text-white border-[#9f2923]",
+//     "#FF7821": "bg-[#FF7821] text-white border-[#FF7821]",
+//     indigo: "bg-[#4b277d] text-white border-[#4b277d]",
+//     green: "bg-[#1D8821] text-white border-[#1D8821]",
+//   };
+//   return (
 
--------VITE_API_URL=https://api.nythyng.com/api/v1
+//     <div className="flex items-center justify-center min-h-screen bg-white">
+//       <div
+//         className={`relative w-[400px] h-[400px] flex items-center justify-center  rounded-full border-${
+//           colorMap[benefits?.bgColor]
+//         }`}
+//       >
+//          <div className="absolute inset-0">
+//           <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+//           <motion.path
+//   d="M 200 0 
+//      C 55 10 0 130 5 200 
+//      C 5 220 5 390 220 392 
+//      C 300 380 400 300 390 200 
+//      C 400 120 325 40 260 15"
+//   fill="#f9d3ae"
+//   strokeWidth="8"
+//   stroke="#F7AB5E"
+//   strokeLinecap="round"
+//   initial={{ pathLength: 0 }}
+//   animate={{ pathLength: 1 }}
+//   transition={transition}
+// />
+//           </svg>
+//           <motion.div
+//             style={box}
+//             initial={{ offsetDistance: "0%", scale: 1.2 }}
+//             animate={{ offsetDistance: "100%", scale: 1 }}
+//             transition={transition}
+//           />
+//         </div>
+
+
+//         <div className=" max-lg:hidden  w-[400px] h-[400px] rounded-full absolute mx-auto innerOrbit-wrapper">
+//           <div className="absolute right-86 top-1/4 -translate-y-1/2 innerProfile-wrapper  ">
+//             <div className="flex justify-between items-center w-96 border-black gap-4">
+//               <div className="flex flex-col justify-end items-end">
+//                 <p className="text-[#F27635] font-bold">{benefits.leftBenefits[0].title}ww</p>
+//                 <p className="text-[#F27635]">
+//                   {benefits.leftBenefits[0].description}
+//                 </p>
+//               </div>
+//               <div className="h-6 w-9 text-black bg-[#F27635] rounded-full animate ease-out"> <Check className="text-white p-1 "/></div>
+//             </div>
+//           </div>
+//           {/* <div className="absolute -right-9 top-1/2 -translate-y-1/2 innerProfile-wrapper">
+//                     <div className="flex justify-center items-center"><div className="h-5 w-5 text-black bg-amber-950 rounded-full"></div><p className="text-black">eee</p></div>
+
+//         </div> */}
+//           <div className="absolute  left-86 top-1/4 -translate-y-1/2 innerProfile-wrapper">
+//             <div className="flex justify-between items-center  w-96 border-black gap-4">
+//               <div className="h-6 w-9 text-black bg-[#F27635] rounded-full">   <Check className="text-white p-1"/></div>
+//               <div className="border-black ">
+//                 <p className="text-[#F27635] font-bold">{benefits.leftBenefits[1].title}ee</p>
+//                 <p className="text-[#F27635]">
+//                   {benefits.leftBenefits[1].description}
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
+//           <div className="absolute  left-83 top-[320px] -translate-y-1/2 innerProfile-wrapper">
+//             <div className="flex justify-between items-center  w-96 gap-4">
+//               <div className="h-6 w-8 text-black bg-[#F27635] rounded-full"> <Check className="text-white p-1"/></div>
+//               <div >
+//                 <p className="text-[#F27635] font-bold">{benefits.leftBenefits[2].title}oo</p>
+//                 <p className="text-[#F27635]">
+//                   {benefits.leftBenefits[2].description}
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
+//           <div className="absolute right-83 top-[320px] -translate-y-1/2 innerProfile-wrapper">
+//             <div className="flex justify-between items-center  w-96 gap-4">
+//               <div className="flex flex-col justify-end items-end">
+//                 <p className="text-[#F27635] font-bold">{benefits.leftBenefits[3].title}</p>
+//                 <p className="text-[#F27635]">
+//                   {benefits.leftBenefits[3].description}
+//                 </p>
+//               </div>
+//               <div className="h-6 w-8 text-black bg-[#F27635] rounded-full"> <Check className="text-white p-1 "/></div>
+//             </div>
+//           </div>
+//           {/* <div className="absolute right-94 top-1/2 -translate-y-1/2 innerProfile-wrapper">
+//                     <div className="flex justify-center items-center"><p className="text-black">kkk</p><div className="h-5 w-8 text-black bg-[#F27635] rounded-full"></div></div>
+          
+//         </div> */}
+//         </div>
+
+//         <img
+//           src={benefits.benifitImg}
+//           alt="NutriBears Bottle"
+//           className="w-full h-full object-contain drop-shadow-lg rounded-full"
+//         />
+//       </div>
+//     </div>
+//   );
+// };
+// const box = {
+//   width: 20,
+//   height: 20,
+//   backgroundColor: "#8df0cc",
+//   borderRadius: "50%",
+//   position: "absolute",
+//   top: 0,
+//   left: 0,
+//   offsetPath: `path("M 200 20 C 100 20 40 100 40 200 C 40 300 120 380 200 380 C 280 380 360 300 360 200 C 360 100 300 60 200 60")`,
+// };
+
+// export default ProductHighlight;
+
+
+
+// ----------without circle-just border
+// import React from "react";
+// import { motion } from "framer-motion";
+// import {
+//   fadeInUp,
+//   fadeInLeft,
+//   fadeInRight,
+//   scaleUp,
+//   inViewOptions,
+// } from "../../components/common/animation";
+// import { PiTrademark } from "react-icons/pi";
+// import { useEffect, useRef } from "react";
+// import { Check } from 'lucide-react';
+
+
+
+// const transition = {
+//   duration: 4,
+//   repeat: Infinity,
+//   repeatType: "reverse",
+//   ease: "easeInOut",
+// };
+// const ProductHighlight = ({ benefits }) => {
+//   console.log("benefits", benefits);
+//   const circleRef = useRef(null);
+
+//   useEffect(() => {
+//     const circle = circleRef.current;
+//     if (circle) {
+//       circle.classList.add("animate-spin-slow");
+//     }
+//   }, []);
+//   const colorMap = {
+//     red: "bg-[#9f2923] text-white border-[#9f2923]",
+//     "#FF7821": "bg-[#FF7821] text-white border-[#FF7821]",
+//     indigo: "bg-[#4b277d] text-white border-[#4b277d]",
+//     green: "bg-[#1D8821] text-white border-[#1D8821]",
+//   };
+//   return (
+
+//     <div className="flex items-center justify-center min-h-screen bg-white">
+//       <div
+//         className={`relative w-[400px] h-[400px] flex items-center justify-center border-r-4 border-l-4 rounded-full border-${
+//           colorMap[benefits?.bgColor]
+//         }`}
+//       >
+        
+
+
+//         <div className=" max-lg:hidden border-1  w-[400px] h-[400px] rounded-full absolute mx-auto innerOrbit-wrapper">
+//           <div className="absolute right-86 top-1/4 -translate-y-1/2 innerProfile-wrapper  ">
+//             <div className="flex justify-between items-center w-96 border-black gap-4">
+//               <div className="flex flex-col justify-end items-end">
+//                 <p className="text-black">{benefits.leftBenefits[0].title}ww</p>
+//                 <p className="text-black">
+//                   {benefits.leftBenefits[0].description}
+//                 </p>
+//               </div>
+//               <div className="h-5 w-9 text-black bg-[#F27635] rounded-full animate ease-out"> <Check className="text-white p-1 "/></div>
+//             </div>
+//           </div>
+//           {/* <div className="absolute -right-9 top-1/2 -translate-y-1/2 innerProfile-wrapper">
+//                     <div className="flex justify-center items-center"><div className="h-5 w-5 text-black bg-[#F27635] rounded-full"></div><p className="text-black">eee</p></div>
+
+//         </div> */}
+//           <div className="absolute  left-86 top-1/4 -translate-y-1/2 innerProfile-wrapper">
+//             <div className="flex justify-between items-center  w-96 border-black gap-4">
+//               <div className="h-5 w-9 text-black bg-amber-950 rounded-full">   <Check className="text-white p-1"/></div>
+//               <div className="border-black ">
+//                 <p className="text-black">{benefits.leftBenefits[1].title}ee</p>
+//                 <p className="text-black">
+//                   {benefits.leftBenefits[1].description}
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
+//           <div className="absolute  left-83 top-[320px] -translate-y-1/2 innerProfile-wrapper">
+//             <div className="flex justify-between items-center  w-96 gap-4">
+//               <div className="h-5 w-8 text-black bg-amber-950 rounded-full"> <Check className="text-white p-1"/></div>
+//               <div >
+//                 <p className="text-black">{benefits.leftBenefits[2].title}oo</p>
+//                 <p className="text-black">
+//                   {benefits.leftBenefits[2].description}
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
+//           <div className="absolute right-83 top-[320px] -translate-y-1/2 innerProfile-wrapper">
+//             <div className="flex justify-between items-center  w-96 gap-4">
+//               <div className="flex flex-col justify-end items-end">
+//                 <p className="text-black">{benefits.leftBenefits[3].title}</p>
+//                 <p className="text-black">
+//                   {benefits.leftBenefits[3].description}
+//                 </p>
+//               </div>
+//               <div className="h-5 w-8 text-black bg-amber-950 rounded-full"> <Check className="text-white p-1 "/></div>
+//             </div>
+//           </div>
+//           {/* <div className="absolute right-94 top-1/2 -translate-y-1/2 innerProfile-wrapper">
+//                     <div className="flex justify-center items-center"><p className="text-black">kkk</p><div className="h-5 w-8 text-black bg-amber-950 rounded-full"></div></div>
+          
+//         </div> */}
+//         </div>
+
+//         <img
+//           src={benefits.benifitImg}
+//           alt="NutriBears Bottle"
+//           className="w-full h-full object-contain drop-shadow-lg rounded-full"
+//         />
+//       </div>
+//     </div>
+//   );
+// };
+
+
+// export default ProductHighlight;
+// --------------------------------------------
+
+// one with the round circles
+import React from "react";
+import { motion } from "framer-motion";
+
+const bottleImg = "/photo_2025-09-16_23-15-16-removebg-preview.png";
+
+export default function ProductHighlight({benefits}) {
+    const size = 600;
+    const outerRadius = 250;
+    const midRadius = 200;
+    const innerRadius = 110;
+
+    const features = [
+        { title: "Natural Sugar", subtitle: "of just 1.5g/gummy" },
+        { title: "100%", subtitle: "Vegetarian" },
+        { title: "No", subtitle: "Preservatives" },
+        { title: "Pectin", subtitle: "based" },
+        { title: "Natural", subtitle: "colours & flavours" },
+        { title: "Essential", subtitle: "vitamins & minerals" },
+    ];
+
+    const leftFeatures = features.slice(0, 3);
+    const rightFeatures = features.slice(3);
+
+    function tickPos(index, total, side) {
+        const angleStep = Math.PI / (total + 1);
+        const angle = angleStep * (index + 1) + (side === "left" ? Math.PI / 2 : -Math.PI / 2);
+        const tickX = size / 2 + outerRadius * Math.cos(angle);
+        const tickY = size / 2 + outerRadius * Math.sin(angle);
+        return { tickX, tickY };
+    }
+
+    // Helper to generate crystals
+    const generateCrystals = (count, radius) =>
+        Array.from({ length: count }).map((_, i) => {
+            const angle = (i / count) * 2 * Math.PI;
+            return {
+                x: radius * Math.cos(angle),
+                y: radius * Math.sin(angle),
+            };
+        });
+
+    const innerCrystals = generateCrystals(6, innerRadius - 10);
+    const midCrystals = generateCrystals(8, midRadius - 10);
+    const outerCrystals = generateCrystals(10, outerRadius - 10);
+
+    return (
+        <div className="min-h-screen bg-white flex items-center justify-center p-6">
+            <div className="relative" style={{ width: size, height: size }}>
+                {/* INNER CIRCLE - Fast */}
+                <motion.div
+                    className="absolute rounded-full"
+                    style={{
+                        width: innerRadius * 2,
+                        height: innerRadius * 2,
+                        left: size / 2 - innerRadius,
+                        top: size / 2 - innerRadius,
+                        background: "radial-gradient(circle, rgba(255, 180, 120, 0.12) 0%, rgba(255, 122, 24, 0.05) 80%)",
+                        border: "1px solid rgba(255, 122, 24, 0.3)",
+                        backdropFilter: "blur(4px)",
+                    }}
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                >
+                    {innerCrystals.map((c, i) => (
+                        <div
+                            key={i}
+                            className="absolute w-2 h-2 rounded-full bg-orange-400 shadow-md"
+                            style={{
+                                left: "50%",
+                                top: "50%",
+                                transform: `translate(${c.x}px, ${c.y}px)`,
+                            }}
+                        />
+                    ))}
+                </motion.div>
+{/* MIDDLE CIRCLE - Medium */}
+                <motion.div
+                    className="absolute rounded-full"
+                    style={{
+                        width: midRadius * 2,
+                        height: midRadius * 2,
+                        left: size / 2 - midRadius,
+                        top: size / 2 - midRadius,
+                        background: "radial-gradient(circle, rgba(255, 90, 90, 0.10) 0%, rgba(255, 60, 60, 0.04) 80%)",
+                        border: "1px solid rgba(255, 60, 60, 0.3)",
+                        backdropFilter: "blur(3px)",
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                    {midCrystals.map((c, i) => (
+                        <div
+                            key={i}
+                            className="absolute w-2 h-2 rounded-full bg-pink-400 shadow"
+                            style={{
+                                left: "50%",
+                                top: "50%",
+                                transform: `translate(${c.x}px, ${c.y}px)`,
+                            }}
+                        />
+                    ))}
+                </motion.div>
+
+                {/* OUTER CIRCLE - Slowest */}
+                <motion.div
+                    className="absolute rounded-full"
+                    style={{
+                        width: outerRadius * 2,
+                        height: outerRadius * 2,
+                        left: size / 2 - outerRadius,
+                        top: size / 2 - outerRadius,
+                        borderWidth: 3,
+                        borderStyle: "solid",
+                        borderRadius: "50%",
+                        background: "radial-gradient(circle, rgba(255, 255, 255, 0.02), rgba(255, 200, 150, 0.03))",
+                        backdropFilter: "blur(2px)",
+                    }}
+                    animate={{
+                        rotate: -360,
+                        borderColor: ["#ff7a18", "#ff0000ff", "#ffffffff", "#ff7a18"],
+                    }}
+                    transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+                >
+                    
+                </motion.div>
+
+                {/* LEFT FEATURES */}
+                {leftFeatures.map((f, i) => {
+                    const { tickX, tickY } = tickPos(i, leftFeatures.length, "left");
+                    return (
+                        <div key={i} className="absolute">
+                            <div
+                                style={{
+                                    left: tickX,
+                                    top: tickY,
+                                    transform: "translate(-50%, -50%)",
+                                    position: "absolute",
+                                }}
+                                className="w-3 h-3 rounded-full bg-orange-500 border border-white"
+                            ></div>
+                            <div
+                                style={{
+                                    left: tickX - 50,
+                                    top: tickY,
+                                    transform: "translate(-100%, -50%)",
+                                    position: "absolute",
+                                }}
+                                className="text-right"
+                            >
+                                <div className="font-semibold text-orange-600 text-base">{f.title}</div>
+                                <div className="text-sm text-orange-400">{f.subtitle}</div>
+                            </div>
+                        </div>
+                    );
+                })}
+{/* RIGHT FEATURES */}
+                {rightFeatures.map((f, i) => {
+                    const { tickX, tickY } = tickPos(i, rightFeatures.length, "right");
+                    return (
+                        <div key={i} className="absolute">
+                            <div
+                                style={{
+                                    left: tickX,
+                                    top: tickY,
+                                    transform: "translate(-50%, -50%)",
+                                    position: "absolute",
+                                }}
+                                className="w-3 h-3 rounded-full bg-orange-500 border border-white"
+                            ></div>
+                            <div
+                                style={{
+                                    left: tickX + 50,
+                                    top: tickY,
+                                    transform: "translate(0, -50%)",
+                                    position: "absolute",
+                                }}
+                                className="text-left"
+                            >
+                                <div className="font-semibold text-orange-600 text-base">{f.title}</div>
+                                <div className="text-sm text-orange-400">{f.subtitle}</div>
+                            </div>
+                        </div>
+                    );
+                })}
+
+                {/* CENTER BOTTLE - Floating */}
+                <div
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                >
+                    <motion.img
+                        src={benefits.benifitImg}
+                        alt="Nutri Bears Bottle"
+                        className="drop-shadow-2xl"
+                        style={{
+                            width: "420px",
+                            height: "auto",
+                            objectFit: "contain",
+                        }}
+                        initial={{ y: 0, rotate: 0 }}
+                        animate={{ y: [0, -12, 0], rotate: [0, 2, -2, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}

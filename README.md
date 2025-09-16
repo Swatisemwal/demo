@@ -689,4 +689,18 @@ const TestimonialSwiper = () => {
 };
 
 export default TestimonialSwiper;
+---------------------------
+VITE_GOOGLE_CLIENT_ID=88140447712-lcvu2vdh9ea635scdc0bnao088db4qqs.apps.googleusercontent.com
+# VITE_API_URL=https://server-wooby.onrender.com/api
+VITE_API_URL=https://api.wooby.in/api
 
+VITE_FRONTEND_URL=https://wooby-frontend.vercel.app
+
+
+password test.wooby.in
+
+user-mhjpharma
+
+pass-Mhj*pharma2204
+
+-------VITE_API_URL=https://api.nythyng.com/api/v1
